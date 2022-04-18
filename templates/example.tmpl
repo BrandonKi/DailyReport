@@ -1,47 +1,21 @@
-version: 0.0
+version	= 0.0
+date	= _date
 
-date: #date
-
-$form {
-    $header { Expenses }
-    $label { item }
-    expense_name: $text_input
-    $label { cost }
-    expense_cost: $text_input
-    $submit_button { submit }
+# DailyReport
+---
+:Form {
+	 -> ## Expenses <-
+    item
+    :TextInput			!ref expense_name
+    cost
+    :TextInput			!ref expense_cost
+	
+    [submit](_form_submit)
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{
-	"version":		"0.0",
-	"date":			"04/13/2022",
-	"expense_name": "food",
-	"expense_cost": "10"
+export {
+    version
+	date
+	expense_name
+	expense_cost
 }

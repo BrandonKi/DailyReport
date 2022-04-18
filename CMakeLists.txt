@@ -9,7 +9,9 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 set(SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/tmpl_parser.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/TmplLexer.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/TmplParser.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/TmplIR.cpp
 )
 
 add_executable(dp ${SRC})
