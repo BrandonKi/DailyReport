@@ -1,9 +1,11 @@
 #include "TmplIR.h"
 
+using namespace tmpl;
+
 TmplIR::TmplIR(): pages{} {
 
 }
 
-TmplIR::add_page(Page* page) {
+void TmplIR::add_page(Page* page) {
 	pages.push_back(page);
 }

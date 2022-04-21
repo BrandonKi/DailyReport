@@ -1,6 +1,8 @@
 #ifndef DR_TMPL_LEXER_H
 #define DR_TMPL_LEXER_H
 
+#include "TmplIR.h"
+
 enum TokenKind {
 	none,
 	text,
@@ -10,10 +12,12 @@ enum TokenKind {
 	equal,
 	hr,
 	dash,
-	brace_open,
-	brace_close,
-	bracket_open,
-	bracket_close,
+	open_brace,
+	close_brace,
+	open_paren,
+	close_paren,
+	open_bracket,
+	close_bracket,
 	h1,
 	h2,
 	h3,
@@ -22,23 +26,30 @@ enum TokenKind {
 
 struct Token {
 	TokenKind kind;
-	
+	std::string data;
 };
 
 class TmplLexer {
 public:
-	TmplLexer();
+	TmplLexer(std::string);
 	
-	current_token();
-	next_token();
-	peek_token();
-	peek_next_token();
-	verify_token();
-	is_token();
+	Token* current_token();
+	Token* next_token();
+	Token* peek_token();
+	Token* peek_next_token();
+	void verify_token(TokenKind);
+	bool is_token(TokenKind);
+
+	bool has_token();
 
 private:
-	lex_text();
+	std::string file;
+	int index;
+	Token* last_token;
 
+	Token* lex_token();
+	Token* lex_text();
+	
 };
 
 #endif	// DR_TMPL_LEXER_H

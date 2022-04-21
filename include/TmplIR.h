@@ -1,12 +1,11 @@
 #ifndef DR_TMPL_IR_H
 #define DR_TMPL_IR_H
 
-#include <vector>
-#include <string>
+#include "Common.h"
 
 namespace tmpl {
 
-enum ElementType {
+enum class ElementType {
 	none,
 	page,
 	text,
@@ -24,6 +23,7 @@ struct Header;
 struct Button;
 struct Checkbox;
 struct Align;
+struct Element;
 
 struct Page {
 	std::string page_name;
@@ -42,7 +42,7 @@ struct Header {
 	std::string content; 
 };
 
-enum ButtonAction {
+enum class ButtonAction {
 	none,
 	submit_page,
 	navigate
@@ -63,7 +63,7 @@ struct Checkbox {
 	bool checked = false;
 };
 
-enum AlignDirection {
+enum class AlignDirection {
 	none,
 	left,
 	right,
@@ -87,11 +87,11 @@ struct Element {
 	};
 };
 
-enum MetaType {
+enum class MetaType {
 	none,
 	ref,
 	decl,
-	export
+	json_export
 };
 
 struct Ref {
@@ -113,20 +113,20 @@ struct MetaElement {
 	union {
 		Ref*    ref;
 		Decl*   decl;
-		Export* export;
+		Export* export_;
 	};
 };
 
 }
 
-class TemplIR {
+class TmplIR {
 public:
 	TmplIR();
 
-    add_page();
+    void add_page(tmpl::Page*);
 
 private:
-	std::vector<Page*> pages;
+	std::vector<tmpl::Page*> pages;
 	
 };
 
